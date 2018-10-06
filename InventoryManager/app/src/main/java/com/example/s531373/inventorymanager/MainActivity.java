@@ -20,11 +20,20 @@ public class MainActivity extends AppCompatActivity {
                 openEdititemactivity2();
             }
         });
+
         Button edititem1=(Button)findViewById(R.id.button3);
         edititem1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openEdititemactivity1();
+            }
+        });
+
+        Button status=(Button)findViewById(R.id.button6);
+        status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openEdititemactivity3();
             }
         });
 
@@ -44,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(this,ViewActivity.class);
         startActivityForResult(intent,1);
     }
+    public  void openEdititemactivity3(){
+        System.out.println("Status Intent initiated");
+        Intent intent=new Intent(this,StatusActivity.class);
+        startActivityForResult(intent,1);
+    }
+
+
 }
 
 
