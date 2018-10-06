@@ -19,6 +19,7 @@
         <activity android:name=".EditItem" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".StatusActivity"></activity>
+        <activity android:name=".AddItem"></activity>
     </application>
 
 </manifest>

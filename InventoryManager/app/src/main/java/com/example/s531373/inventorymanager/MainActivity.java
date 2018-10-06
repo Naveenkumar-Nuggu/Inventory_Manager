@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button add = (Button) findViewById(R.id.addBTN);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Please Wait...",Toast.LENGTH_SHORT).show();
+                openAddActivity();
+            }
+        });
     }
 
     @Override
@@ -57,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Status Intent initiated");
         Intent intent=new Intent(this,StatusActivity.class);
         startActivityForResult(intent,1);
+    }
+
+    public void openAddActivity(){
+        Intent in = new Intent(MainActivity.this,AddItem.class);
+        startActivityForResult(in,1);
     }
 
 
