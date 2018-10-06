@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
+
         Button add = (Button) findViewById(R.id.addBTN);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 openAddActivity();
             }
         });
-=======
 
-        Button delete =(Button)findViewById(R.id.btdelete);
+     Button delete =(Button)findViewById(R.id.btdelete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
->>>>>>> b6deb0f5cffa39ebc52b6df2eeb4f8ed457bb658
     }
 
     @Override
