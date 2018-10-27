@@ -257,6 +257,46 @@
             android:textSize="32sp" />
 
     </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/TV18"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Tamatos"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/TV16"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="60"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/TV17"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Slow"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="32sp" />
+
+    </TableRow>
+
+
 
 
 </TableLayout>
