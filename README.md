@@ -1,1 +1,1 @@
-# Inventory_Manager
+# Inventory_Management

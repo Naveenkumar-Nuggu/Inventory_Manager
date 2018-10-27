@@ -67,19 +67,19 @@
         android:layout_marginTop="24dp"
         android:text="Item Quantity"
         app:layout_constraintBottom_toTopOf="@+id/textView21"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/plus1BTN"
         app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
         app:layout_constraintVertical_bias="0.38" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/number1ET"
         android:layout_width="92dp"
-        android:layout_height="34dp"
+        android:layout_height="42dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
+        android:inputType="text|number"
+        android:text="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.519"
@@ -88,7 +88,7 @@
         app:layout_constraintVertical_bias="0.074" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/plus1BTN"
         android:layout_width="50dp"
         android:layout_height="35dp"
         android:layout_marginBottom="28dp"
@@ -96,13 +96,13 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="26dp"
         android:text="+"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
-        app:layout_constraintEnd_toStartOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/plus2BTN"
+        app:layout_constraintEnd_toStartOf="@+id/number1ET"
         app:layout_constraintStart_toEndOf="@+id/textView20"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/minus1BTN"
         android:layout_width="42dp"
         android:layout_height="37dp"
         android:layout_marginBottom="25dp"
@@ -110,10 +110,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="72dp"
         android:text="-"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/minus2BTN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editText4"
+        app:layout_constraintStart_toEndOf="@+id/number1ET"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
         app:layout_constraintVertical_bias="0.26" />
 
@@ -133,7 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/plus2BTN"
         android:layout_width="47dp"
         android:layout_height="35dp"
         android:text="+"
@@ -141,25 +141,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
+        app:layout_constraintTop_toBottomOf="@+id/number1ET"
         app:layout_constraintVertical_bias="0.085" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/number2ET"
         android:layout_width="90dp"
-        android:layout_height="32dp"
+        android:layout_height="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
+        android:inputType="text|number"
+        android:text="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
+        app:layout_constraintStart_toEndOf="@+id/plus2BTN"
+        app:layout_constraintTop_toBottomOf="@+id/number1ET"
         app:layout_constraintVertical_bias="0.093" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/minus2BTN"
         android:layout_width="41dp"
         android:layout_height="38dp"
         android:layout_marginBottom="305dp"
@@ -168,8 +168,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toEndOf="@+id/editText5"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintStart_toEndOf="@+id/number2ET"
+        app:layout_constraintTop_toBottomOf="@+id/minus1BTN" />
 
     <TextView
         android:id="@+id/textView22"
@@ -180,7 +180,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/plus2BTN"
         app:layout_constraintVertical_bias="0.13" />
 
     <EditText
@@ -194,7 +194,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toEndOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/plus2BTN"
         app:layout_constraintVertical_bias="0.110000014" />
 
     <TextView

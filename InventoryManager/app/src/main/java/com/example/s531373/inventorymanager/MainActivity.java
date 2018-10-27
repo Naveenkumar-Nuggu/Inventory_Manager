@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
             }
         });
 
-        Button edititem1 = (Button) findViewById(R.id.button5);
+        Button edititem1 = (Button) findViewById(R.id.plus1BTN);
         edititem1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
             }
         });
 
-        Button status = (Button) findViewById(R.id.button6);
+        Button status = (Button) findViewById(R.id.minus1BTN);
         status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
