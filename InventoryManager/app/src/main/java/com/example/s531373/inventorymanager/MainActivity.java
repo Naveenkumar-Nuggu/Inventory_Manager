@@ -2,22 +2,39 @@ package com.example.s531373.inventorymanager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class MainActivity extends AppCompatActivity implements ValueEventListener {
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference();
+    private DatabaseReference mchild = myRef.child("key");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button edititem=(Button)findViewById(R.id.button);
+
+        //Sample test for firebase, writing objects
+        mchild.setValue("Text");
+
+
+        Button edititem = (Button) findViewById(R.id.button);
         edititem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button edititem1=(Button)findViewById(R.id.button5);
+        Button edititem1 = (Button) findViewById(R.id.button5);
         edititem1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button status=(Button)findViewById(R.id.button6);
+        Button status = (Button) findViewById(R.id.button6);
         status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,15 +60,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button add = (Button) findViewById(R.id.addBTN);
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Please Wait...",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Please Wait...", Toast.LENGTH_SHORT).show();
                 openAddActivity();
             }
         });
 
-     Button delete =(Button)findViewById(R.id.btdelete);
+        Button delete = (Button) findViewById(R.id.btdelete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this,"Clicked Ok", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Clicked Ok", Toast.LENGTH_SHORT).show();
                     }
                 });
                 alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this,"Clicked Cancel", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Clicked Cancel", Toast.LENGTH_SHORT).show();
                     }
                 });
                 alertDialog.create();
@@ -75,36 +93,46 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        return super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.mainmenu,menu);
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
         return true;
     }
-    public  void openEdititemactivity2(){
-        Intent intent=new Intent(this,EditItem.class);
-        startActivityForResult(intent,1);
+
+    public void openEdititemactivity2() {
+        Intent intent = new Intent(this, EditItem.class);
+        startActivityForResult(intent, 1);
     }
-    public  void openEdititemactivity1(){
-        Intent intent=new Intent(this,ViewActivity.class);
-        startActivityForResult(intent,1);
+
+    public void openEdititemactivity1() {
+        Intent intent = new Intent(this, ViewActivity.class);
+        startActivityForResult(intent, 1);
     }
-    public  void openEdititemactivity3(){
+
+    public void openEdititemactivity3() {
         System.out.println("Status Intent initiated");
-        Intent intent=new Intent(this,StatusActivity.class);
-        startActivityForResult(intent,1);
+        Intent intent = new Intent(this, StatusActivity.class);
+        startActivityForResult(intent, 1);
     }
 
-    public void openAddActivity(){
-        Intent in = new Intent(MainActivity.this,AddItem.class);
-        startActivityForResult(in,1);
+    public void openAddActivity() {
+        Intent in = new Intent(MainActivity.this, AddItem.class);
+        startActivityForResult(in, 1);
     }
 
 
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
 }
 
 
