@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 public class AddItem extends AppCompatActivity {
+    private String ORDER_TYPE="unknown";
 
     private Bitmap yourSelectedImage;
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,24 @@ public class AddItem extends AppCompatActivity {
             }
         });
 
+        Button minus1 = (Button) findViewById(R.id.minus1BTN);
+        minus1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText firstin = (EditText) findViewById(R.id.number1ET);
+                String str = firstin.getText().toString();
+                int i = Integer.parseInt(str);
+                i--;
+                if(i<0){
+                    firstin.setText(""+0);
+                }
+                else {
+                    firstin.setText("" + i);
+                }
+            }
+        });
+
+
         Button plus2 = (Button) findViewById(R.id.plus2BTN);
         plus2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +80,63 @@ public class AddItem extends AppCompatActivity {
                 int i = Integer.parseInt(str);
                 i++;
                 seconin.setText(""+i);
+            }
+        });
+
+        Button minus2 = (Button) findViewById(R.id.minus2BTN);
+        minus2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText seconin = (EditText) findViewById(R.id.number2ET);
+                String str = seconin.getText().toString();
+                int i = Integer.parseInt(str);
+                i--;
+                if(i<0){
+                    seconin.setText(""+0);
+                }
+                else {
+                    seconin.setText("" + i);
+                }
+            }
+        });
+
+        RadioButton rd1 = (RadioButton) findViewById(R.id.autoRD);
+        RadioButton rd2 = (RadioButton) findViewById(R.id.manRD);
+        rd1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RadioButton rd1 = (RadioButton) findViewById(R.id.autoRD);
+                RadioButton rd2 = (RadioButton) findViewById(R.id.manRD);
+                if(rd2.isChecked()) {
+                    rd2.setChecked(false);
+                    rd1.setChecked(true);
+                    ORDER_TYPE="Auto";
+                }
+                else{
+                    rd1.setChecked(true);
+                    ORDER_TYPE="Auto";
+                }
+            }
+        });
+
+
+
+
+        rd2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RadioButton rd1 = (RadioButton) findViewById(R.id.autoRD);
+                RadioButton rd2 = (RadioButton) findViewById(R.id.manRD);
+
+               if(rd1.isChecked()){
+                   rd1.setChecked(false);
+                   rd2.setChecked(true);
+                   ORDER_TYPE="Manual";
+               }
+               else{
+                   rd2.setChecked(true);
+                   ORDER_TYPE="Manual";
+               }
             }
         });
 
