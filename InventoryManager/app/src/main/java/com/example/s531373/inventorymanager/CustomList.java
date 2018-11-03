@@ -12,53 +12,54 @@ import android.widget.TextView;
 
 public class CustomList extends ArrayAdapter<String> {
 
-    private String[] textname;
-    private String[] cost;
-    private String[] quantity1;
-    private Integer[] image;
+    private String[] name;
+    private Integer[] imgid;
+    private String[] price;
+    private String[] quantity;
     private Activity context;
-    public CustomList( Activity context,String[] textname, String[] cost, String[] quantity1,Integer[] image) {
-        super(context, R.layout.list_elements,textname);
-        this.textname=textname;
-        this.cost=cost;
-        this.quantity1=quantity1;
-        this.image=image;
+
+    public CustomList(@NonNull Activity context, String[] name, Integer[] imgid,String[] price, String[] quantity) {
+        super(context, R.layout.list_elements,name);
+        this.context=context;
+        this.imgid=imgid;
+        this.name=name;
+        this.price=price;
+        this.quantity=quantity;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View r=convertView;
-        viewholder viewholder=null;
-        if(r==null)
-        {
-            LayoutInflater layoutInflater=context.getLayoutInflater();
+        View r= convertView;
+        ViewHolder viewHolder=null;
+        if(r==null){
+            LayoutInflater layoutInflater = context.getLayoutInflater();
             r=layoutInflater.inflate(R.layout.list_elements,null,true);
-            viewholder=new viewholder(r);
-            r.setTag(viewholder);
-
+            viewHolder= new ViewHolder(r);
+            r.setTag(viewHolder);
         }
         else{
-            viewholder=(viewholder)r.getTag();
+            viewHolder=(ViewHolder) r.getTag();
         }
-        viewholder.im.setImageResource(image[position]);
-        viewholder.tn.setText(textname[position]);
-        viewholder.qt.setText(quantity1[position]);
-        viewholder.cs.setText(cost[position]);
+        viewHolder.iv.setImageResource(imgid[position]);
+        viewHolder.tv1.setText(name[position]);
+        viewHolder.ptv.setText("Price : $"+price[position]);
+        viewHolder.qtv.setText("Quantity : " +quantity[position]);
         return r;
-
     }
-    class viewholder{
-        TextView tn;
-        TextView cs;
-        TextView qt;
-        ImageView im;
-        viewholder(View v){
-//            tn=v.findViewById(R.id.editTextname);
-            cs=v.findViewById(R.id.price);
-            qt=v.findViewById(R.id.quantity);
-            im=v.findViewById(R.id.image);
+    class ViewHolder{
+        TextView tv1;
+        ImageView iv;
+        TextView ptv;
+        TextView qtv;
+        ViewHolder(View v) {
+            tv1 = v.findViewById(R.id.product_name);
+            iv = v.findViewById(R.id.prodctimg);
+            ptv = v.findViewById(R.id.price);
+            qtv = v.findViewById(R.id.quantity);
         }
     }
+
+
 }
 
