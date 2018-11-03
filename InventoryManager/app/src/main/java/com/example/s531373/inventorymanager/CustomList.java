@@ -43,7 +43,7 @@ public class CustomList extends ArrayAdapter<String> {
         }
         viewHolder.iv.setImageResource(imgid[position]);
         viewHolder.tv1.setText(name[position]);
-        viewHolder.ptv.setText("Price : "+price[position]);
+        viewHolder.ptv.setText("Price : $"+price[position]);
         viewHolder.qtv.setText("Quantity : " +quantity[position]);
         return r;
     }

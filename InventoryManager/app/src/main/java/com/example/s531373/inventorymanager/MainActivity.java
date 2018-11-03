@@ -56,9 +56,9 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
         name = namelist.toArray(new String[namelist.size()]);
 
         pricelist = new ArrayList<>();
-        pricelist.add("10$");
-        pricelist.add("20$");
-        pricelist.add("30$");
+        pricelist.add("10");
+        pricelist.add("20");
+        pricelist.add("30");
 
         price = pricelist.toArray(new String[pricelist.size()]);
 
