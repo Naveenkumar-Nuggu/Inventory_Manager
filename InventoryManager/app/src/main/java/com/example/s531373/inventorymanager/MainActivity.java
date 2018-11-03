@@ -3,6 +3,7 @@ package com.example.s531373.inventorymanager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -173,6 +174,37 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
         Intent in = new Intent(MainActivity.this, AddItem.class);
         startActivityForResult(in, 1);
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Bundle bundle = data.getExtras();
+
+        int resid = bundle.getInt("image");
+        String str = bundle.getString("name");
+        String str2 = bundle.getString("price");
+        String str3 = bundle.getString("quantity");
+
+        namelist.add(str);
+        imgidlist.add(resid);
+        pricelist.add(str2);
+        quantitylist.add(str3);
+        name = namelist.toArray(new String[namelist.size()]);
+        imgid = imgidlist.toArray(new Integer[imgidlist.size()]);
+        price = pricelist.toArray(new String[pricelist.size()]);
+        quantity = quantitylist.toArray(new String[quantitylist.size()]);
+
+        onNewItem(name,imgid,price,quantity);
+    }
+
+    public void onNewItem(String[] name, Integer[] imgid,String[] price,String[] quantity){
+
+        customList = new CustomList(this,name,imgid,price,quantity);
+        list.setAdapter(customList);
+    }
+
 
 
 

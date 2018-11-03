@@ -4,19 +4,14 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.OrientationEventListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,11 +24,18 @@ public class AddItem extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 0;
     Uri actualUri;
     ImageView imageView;
+    EditText name;
+    EditText price;
+    EditText quantity;
 
     private Bitmap yourSelectedImage;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
+
+        name = (EditText) findViewById(R.id.nameET);
+        price = (EditText) findViewById(R.id.priceET);
+        quantity = (EditText) findViewById(R.id.quantityET);
 
         imageView = (ImageView) findViewById(R.id.imageView);
         Intent i = getIntent();
@@ -47,6 +49,24 @@ public class AddItem extends AppCompatActivity {
             }
         });
 
+        Button save = (Button) findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ini = getIntent();
+
+
+                ini.putExtra("name",name.getText().toString());
+                ini.putExtra("price",price.getText().toString());
+                ini.putExtra("quantity",quantity.getText().toString());
+                ini.putExtra("image", BitmapFactory.decodeResource(getResources(),R.id.imageView));
+
+
+                setResult(Activity.RESULT_OK,ini);
+                finish();
+            }
+        });
+
 
 
 
@@ -54,7 +74,7 @@ public class AddItem extends AppCompatActivity {
         plus1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText firstin = (EditText) findViewById(R.id.number1ET);
+                EditText firstin = (EditText) findViewById(R.id.quantityET);
                 String str = firstin.getText().toString();
                 int i = Integer.parseInt(str);
                 i++;
@@ -66,7 +86,7 @@ public class AddItem extends AppCompatActivity {
         minus1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText firstin = (EditText) findViewById(R.id.number1ET);
+                EditText firstin = (EditText) findViewById(R.id.quantityET);
                 String str = firstin.getText().toString();
                 int i = Integer.parseInt(str);
                 i--;
