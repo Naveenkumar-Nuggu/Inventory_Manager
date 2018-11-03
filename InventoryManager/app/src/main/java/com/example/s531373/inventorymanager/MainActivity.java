@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +18,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements ValueEventListener {
+import java.util.ArrayList;
+
+public class    MainActivity extends AppCompatActivity implements ValueEventListener {
+
+    ArrayList<String> namelist;
+    String [] name;
+    ArrayList<Integer> imgidlist;
+    Integer[] imgid;
+    ArrayList<String> pricelist;
+    String[] price;
+    ArrayList<String> quantitylist;
+    String[] quantity;
+    ListView list;
+    CustomList customList;
+
+
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference();
@@ -28,6 +44,42 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        namelist = new ArrayList<>();
+        namelist.add("Dove");
+        namelist.add("Tide");
+        namelist.add("Notebooks");
+
+        name = namelist.toArray(new String[namelist.size()]);
+
+        pricelist = new ArrayList<>();
+        pricelist.add("10$");
+        pricelist.add("20$");
+        pricelist.add("30$");
+
+        price = pricelist.toArray(new String[pricelist.size()]);
+
+        quantitylist = new ArrayList<>();
+        quantitylist.add("3");
+        quantitylist.add("2");
+        quantitylist.add("4");
+
+        quantity = quantitylist.toArray(new String[quantitylist.size()]);
+
+
+        imgidlist = new ArrayList<>();
+
+        imgidlist.add(R.drawable.dove);
+        imgidlist.add(R.drawable.tide);
+        imgidlist.add(R.drawable.notebooks);
+
+        imgid = imgidlist.toArray(new Integer[imgidlist.size()]);
+        list = (ListView) findViewById(R.id.listview);
+
+        customList = new CustomList(this,name,imgid,price,quantity);
+        list.setAdapter(customList);
 
         //Sample test for firebase, writing objects
         mchild.setValue("Text");
@@ -121,6 +173,8 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         Intent in = new Intent(MainActivity.this, AddItem.class);
         startActivityForResult(in, 1);
     }
+
+
 
 
     @Override
