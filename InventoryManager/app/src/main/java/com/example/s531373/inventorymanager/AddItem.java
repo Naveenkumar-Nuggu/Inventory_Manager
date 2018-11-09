@@ -27,12 +27,16 @@ public class AddItem extends AppCompatActivity {
     EditText name;
     EditText price;
     EditText quantity;
+    Button save;
+    EditText supplierNA;
+    EditText supplierPh;
+    EditText supplierEm;
 
     private Bitmap yourSelectedImage;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
-
+//supplierNA=(EditText)findViewById(R.id.)
         name = (EditText) findViewById(R.id.nameET);
         price = (EditText) findViewById(R.id.priceET);
         quantity = (EditText) findViewById(R.id.quantityET);
@@ -168,6 +172,12 @@ public class AddItem extends AppCompatActivity {
                }
             }
         });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                savebutuuon();
+            }
+        });
 
     }
 
@@ -225,7 +235,9 @@ public class AddItem extends AppCompatActivity {
     }
 
 
+public void savebutuuon(){
 
+}
 
 
 
