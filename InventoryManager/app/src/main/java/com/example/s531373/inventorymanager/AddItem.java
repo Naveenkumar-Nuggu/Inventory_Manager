@@ -12,11 +12,16 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AddItem extends AppCompatActivity {
     private String ORDER_TYPE="unknown";
@@ -31,12 +36,18 @@ public class AddItem extends AppCompatActivity {
     EditText supplierNA;
     EditText supplierPh;
     EditText supplierEm;
+    EditText Threshold;
+    DatabaseReference databaseReference;
 
     private Bitmap yourSelectedImage;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
-//supplierNA=(EditText)findViewById(R.id.)
+        databaseReference =FirebaseDatabase.getInstance().getReference("Database");
+        Threshold= (EditText)findViewById(R.id.number2ET);
+supplierNA=(EditText)findViewById(R.id.editText6);
+supplierPh=(EditText)findViewById(R.id.editText13);
+supplierEm=(EditText)findViewById(R.id.editText14);
         name = (EditText) findViewById(R.id.nameET);
         price = (EditText) findViewById(R.id.priceET);
         quantity = (EditText) findViewById(R.id.quantityET);
@@ -67,6 +78,23 @@ public class AddItem extends AppCompatActivity {
 
 
                 setResult(Activity.RESULT_OK,ini);
+                String Itemname=name.getText().toString();
+//    String ItemPrice=price.getText().toString();
+//    String ItemQuantity=quantity.getText().toString();
+//    String IteamThreshold=Threshold.getText().toString();
+//    String SupplierName=supplierNA.getText().toString();
+//    String SupplierPhone=supplierPh.getText().toString();
+//    String SupplierEmail=supplierEm.getText().toString();
+                if(!TextUtils.isEmpty(Itemname)){
+                    String id=databaseReference.push().getKey();
+                    Database database=new Database(id,Itemname);
+                    databaseReference.child(id).setValue(database);
+                    name.setText("");
+
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
+                }
                 finish();
             }
         });
@@ -172,12 +200,12 @@ public class AddItem extends AppCompatActivity {
                }
             }
         });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                savebutuuon();
-            }
-        });
+//        save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                savebutuuon();
+//            }
+//        });
 
     }
 
@@ -236,7 +264,23 @@ public class AddItem extends AppCompatActivity {
 
 
 public void savebutuuon(){
-
+//    String Itemname=name.getText().toString();
+////    String ItemPrice=price.getText().toString();
+////    String ItemQuantity=quantity.getText().toString();
+////    String IteamThreshold=Threshold.getText().toString();
+////    String SupplierName=supplierNA.getText().toString();
+////    String SupplierPhone=supplierPh.getText().toString();
+////    String SupplierEmail=supplierEm.getText().toString();
+//    if(!TextUtils.isEmpty(Itemname)){
+//        String id=databaseReference.push().getKey();
+//        Database database=new Database(id,Itemname);
+//        databaseReference.child(id).setValue(database);
+//        name.setText("");
+//
+//    }
+//    else {
+//        Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
+//    }
 }
 
 
