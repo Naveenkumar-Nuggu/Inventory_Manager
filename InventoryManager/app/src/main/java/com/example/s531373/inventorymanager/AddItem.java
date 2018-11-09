@@ -79,17 +79,23 @@ supplierEm=(EditText)findViewById(R.id.editText14);
 
                 setResult(Activity.RESULT_OK,ini);
                 String Itemname=name.getText().toString();
-//    String ItemPrice=price.getText().toString();
-//    String ItemQuantity=quantity.getText().toString();
-//    String IteamThreshold=Threshold.getText().toString();
-//    String SupplierName=supplierNA.getText().toString();
-//    String SupplierPhone=supplierPh.getText().toString();
-//    String SupplierEmail=supplierEm.getText().toString();
-                if(!TextUtils.isEmpty(Itemname)){
+    String ItemPrice=price.getText().toString();
+    String ItemQuantity=quantity.getText().toString();
+    String IteamThreshold=Threshold.getText().toString();
+    String SupplierName=supplierNA.getText().toString();
+    String SupplierPhone=supplierPh.getText().toString();
+    String SupplierEmail=supplierEm.getText().toString();
+                if(!TextUtils.isEmpty(Itemname)&& !TextUtils.isEmpty(ItemPrice) && !TextUtils.isEmpty(ItemQuantity) && !TextUtils.isEmpty(IteamThreshold) && !TextUtils.isEmpty(SupplierName) && !TextUtils.isEmpty(SupplierEmail) && !TextUtils.isEmpty(SupplierPhone) ){
                     String id=databaseReference.push().getKey();
-                    Database database=new Database(id,Itemname);
+                    Database database=new Database(id,Itemname,ItemPrice,ItemQuantity,IteamThreshold,SupplierName,SupplierPhone,SupplierEmail);
                     databaseReference.child(id).setValue(database);
                     name.setText("");
+                    price.setText("");
+                    quantity.setText("");
+                    Threshold.setText("");
+                    supplierNA.setText("");
+                    supplierPh.setText("");
+                    supplierEm.setText("");
 
                 }
                 else {
