@@ -1,6 +1,6 @@
 package com.example.s531373.inventorymanager;
 
-import android.app.Activity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -8,8 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class    MainActivity extends AppCompatActivity implements ValueEventListener {
 
@@ -38,9 +36,9 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
     private ListView list;
     CustomList customList;
     DatabaseReference databaseReference;
-    ArrayList<Database> databaseList;
 
-private Activity context;
+
+
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference();
@@ -51,11 +49,6 @@ private Activity context;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        LayoutInflater inflater=context.getLayoutInflater();
-//        View listview=inflater.inflate(R.layout.activity_additem,null,true);
-        databaseReference =FirebaseDatabase.getInstance().getReference("Database");
-        databaseList=new ArrayList<>();
 
         namelist = new ArrayList<>();
         namelist.add("Dove");
@@ -184,7 +177,6 @@ private Activity context;
     public void openAddActivity() {
         Intent in = new Intent(MainActivity.this, AddItem.class);
         startActivityForResult(in, 1);
-        Log.d("Value",""+databaseList.get(2));
     }
 
 
@@ -232,35 +224,6 @@ private Activity context;
     public void onCancelled(@NonNull DatabaseError databaseError) {
 
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot Databasesnapshort:dataSnapshot.getChildren()){
-                    Database database=dataSnapshot.getValue(Database.class);
-                    databaseList.add(database);
-
-                 //   Log.d("Value",""+databaseList.get(2));
-
-                                 }
-
-            }
-
-//            AddAdapter addAdapter=new AddAdapter(MainActivity.this,databaseList);
-
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-
-    Database db = new Database();
 
 }
 

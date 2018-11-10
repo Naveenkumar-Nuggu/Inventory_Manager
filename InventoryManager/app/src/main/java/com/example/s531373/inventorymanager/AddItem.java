@@ -307,27 +307,5 @@ public void savebutuuon(){
 //    }
 }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for(DataSnapshot Databasesnapshort:dataSnapshot.getChildren()){
-//                    Database database=dataSnapshot.getValue(Database.class);
-//                    databaseList.add(database);
-//
-//                }
-//
-//            }
-//
-//            AddAdapter addAdapter=new AddAdapter(AddItem.this,databaseList);
-//
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        })
-//    }
+
 }
