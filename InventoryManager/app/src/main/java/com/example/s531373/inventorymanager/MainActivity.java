@@ -1,5 +1,6 @@
 package com.example.s531373.inventorymanager;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -7,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class    MainActivity extends AppCompatActivity implements ValueEventListener {
 
@@ -31,10 +35,12 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
     String[] price;
     ArrayList<String> quantitylist;
     String[] quantity;
-    ListView list;
+    private ListView list;
     CustomList customList;
+    DatabaseReference databaseReference;
+    ArrayList<Database> databaseList;
 
-
+private Activity context;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference();
@@ -46,7 +52,10 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+//        LayoutInflater inflater=context.getLayoutInflater();
+//        View listview=inflater.inflate(R.layout.activity_additem,null,true);
+        databaseReference =FirebaseDatabase.getInstance().getReference("Database");
+        databaseList=new ArrayList<>();
 
         namelist = new ArrayList<>();
         namelist.add("Dove");
@@ -145,6 +154,8 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
         });
 
 
+
+
     }
 
     @Override
@@ -173,6 +184,7 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
     public void openAddActivity() {
         Intent in = new Intent(MainActivity.this, AddItem.class);
         startActivityForResult(in, 1);
+        Log.d("Value",""+databaseList.get(2));
     }
 
 
@@ -203,6 +215,8 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
 
         customList = new CustomList(this,name,imgid,price,quantity);
         list.setAdapter(customList);
+
+
     }
 
 
@@ -218,6 +232,36 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
     public void onCancelled(@NonNull DatabaseError databaseError) {
 
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot Databasesnapshort:dataSnapshot.getChildren()){
+                    Database database=dataSnapshot.getValue(Database.class);
+                    databaseList.add(database);
+
+                 //   Log.d("Value",""+databaseList.get(2));
+
+                                 }
+
+            }
+
+//            AddAdapter addAdapter=new AddAdapter(MainActivity.this,databaseList);
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    Database db = new Database();
+
 }
 
 

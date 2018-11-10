@@ -1,5 +1,7 @@
 package com.example.s531373.inventorymanager;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Database {
     private String Id;
     private String Itemname;
@@ -64,4 +66,6 @@ public class Database {
     public String getSupplierEmail() {
         return SupplierEmail;
     }
+
+
 }
