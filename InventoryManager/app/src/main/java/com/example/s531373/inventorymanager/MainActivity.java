@@ -1,6 +1,5 @@
 package com.example.s531373.inventorymanager;
 
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -22,7 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
 public class    MainActivity extends AppCompatActivity implements ValueEventListener {
 
     ArrayList<String> namelist;
@@ -33,10 +31,8 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
     String[] price;
     ArrayList<String> quantitylist;
     String[] quantity;
-    private ListView list;
+    ListView list;
     CustomList customList;
-    DatabaseReference databaseReference;
-
 
 
 
@@ -49,6 +45,8 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         namelist = new ArrayList<>();
         namelist.add("Dove");
@@ -147,8 +145,6 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
         });
 
 
-
-
     }
 
     @Override
@@ -207,8 +203,6 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
 
         customList = new CustomList(this,name,imgid,price,quantity);
         list.setAdapter(customList);
-
-
     }
 
 
@@ -224,7 +218,6 @@ public class    MainActivity extends AppCompatActivity implements ValueEventList
     public void onCancelled(@NonNull DatabaseError databaseError) {
 
     }
-
 }
 
 

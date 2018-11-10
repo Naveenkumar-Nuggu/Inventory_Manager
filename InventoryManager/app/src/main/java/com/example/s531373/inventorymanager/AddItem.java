@@ -9,28 +9,19 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddItem extends AppCompatActivity {
     private String ORDER_TYPE="unknown";
@@ -46,20 +37,13 @@ public class AddItem extends AppCompatActivity {
     EditText supplierPh;
     EditText supplierEm;
     EditText Threshold;
-    ListView listview;
-    private Activity context;
     DatabaseReference databaseReference;
-List<Database>databaseList;
+
     private Bitmap yourSelectedImage;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
-
-//        LayoutInflater inflater=context.getLayoutInflater();
-//        View listview=inflater.inflate(R.layout.activity_additem,null,true);
-//        databaseReference =FirebaseDatabase.getInstance().getReference("Database");
-//        databaseList=new ArrayList<>();
-//         listview=findViewById(R.id.lis)
+        databaseReference =FirebaseDatabase.getInstance().getReference("Database");
         Threshold= (EditText)findViewById(R.id.number2ET);
 supplierNA=(EditText)findViewById(R.id.editText6);
 supplierPh=(EditText)findViewById(R.id.editText13);
@@ -229,8 +213,6 @@ supplierEm=(EditText)findViewById(R.id.editText14);
 //            }
 //        });
 
-
-
     }
 
     public void tryToOpenImageSelector() {
@@ -287,7 +269,7 @@ supplierEm=(EditText)findViewById(R.id.editText14);
     }
 
 
-public void savebutuuon(){
+//public void savebutuuon(){
 //    String Itemname=name.getText().toString();
 ////    String ItemPrice=price.getText().toString();
 ////    String ItemQuantity=quantity.getText().toString();
@@ -305,7 +287,10 @@ public void savebutuuon(){
 //    else {
 //        Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
 //    }
-}
+//}
+
+
+
 
 
 }
