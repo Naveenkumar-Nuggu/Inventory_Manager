@@ -25,15 +25,15 @@ public class Database {
         SupplierPhone = supplierPhone;
         SupplierEmail = supplierEmail;
     }
-    public String getId() {
-        return Id;
-    }
+//    public String getId() {
+//        return Id;
+//    }
 
-    public Database(String id, String itemname) {
-        this.Itemname = itemname;
-
-        this.Id=itemname;
-    }
+//    public Database(String id, String itemname) {
+//        this.Itemname = itemname;
+//
+//        this.Id=itemname;
+//    }
 
 //    }
 

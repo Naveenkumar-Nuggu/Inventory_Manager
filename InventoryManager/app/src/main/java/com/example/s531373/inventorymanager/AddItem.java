@@ -27,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -40,10 +39,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-=======
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
->>>>>>> 10b2aed67fa4c93d48caf7c3ac6c857b268eda87
 
 public class AddItem extends AppCompatActivity {
     private String ORDER_TYPE="unknown";
@@ -60,19 +55,13 @@ public class AddItem extends AppCompatActivity {
     EditText supplierEm;
     EditText Threshold;
     DatabaseReference databaseReference;
-<<<<<<< HEAD
     StorageReference storagedata;
-=======
->>>>>>> 10b2aed67fa4c93d48caf7c3ac6c857b268eda87
 
     private Bitmap yourSelectedImage;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
-<<<<<<< HEAD
         storagedata=FirebaseStorage.getInstance().getReference("Database");
-=======
->>>>>>> 10b2aed67fa4c93d48caf7c3ac6c857b268eda87
         databaseReference =FirebaseDatabase.getInstance().getReference("Database");
         Threshold= (EditText)findViewById(R.id.number2ET);
 supplierNA=(EditText)findViewById(R.id.editText6);
@@ -360,7 +349,6 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
     }
 
 
-<<<<<<< HEAD
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
@@ -389,8 +377,6 @@ return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 //
 
-=======
->>>>>>> 10b2aed67fa4c93d48caf7c3ac6c857b268eda87
 //public void savebutuuon(){
 //    String Itemname=name.getText().toString();
 ////    String ItemPrice=price.getText().toString();
