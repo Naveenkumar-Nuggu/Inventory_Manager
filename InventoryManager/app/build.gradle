@@ -22,11 +22,7 @@ android {
 }
 
 dependencies {
-<<<<<<< HEAD
    // implementation fileTree(dir: 'libs', include: ['*.jar'])
-=======
-    //implementation fileTree(dir: 'libs', include: ['*.jar'])
->>>>>>> a5ae30c8cc4faf3f8114540e2449cf18b9d9d6db
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
@@ -37,41 +33,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-<<<<<<< HEAD
     implementation 'com.google.firebase:firebase-storage:16.0.3'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
-=======
-<<<<<<< HEAD
-    implementation 'com.google.firebase:firebase-storage:16.0.3'
-
-=======
-    implementation 'com.google.firebase:firebase-storage:9.0.2'
-//    implementation 'com.google.firebase:firebase-auth:11.0.4'
-//    implementation 'com.android.sopport:cardview-v7:26.1.0'
-//    implementation 'com.android.sopport:recyclerview-v7:26.1.0'
-//    implementation 'com.squareup.picasso:picasso:2.5.2'
->>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
-    implementation 'com.squareup.picasso:picasso:2.71828'
-
-    implementation 'com.google.firebase:firebase-auth:16.0.3'
-}
-<<<<<<< HEAD
-com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
-
-
-=======
-apply plugin: 'com.google.gms.google-services'
->>>>>>> a5ae30c8cc4faf3f8114540e2449cf18b9d9d6db
 
     implementation 'com.google.firebase:firebase-auth:16.0.3'
     implementation 'com.google.firebase:firebase-storage:9.0.2'
 
-<<<<<<< HEAD
 }
-=======
-apply plugin: 'com.google.gms.google-services'
->>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
->>>>>>> a5ae30c8cc4faf3f8114540e2449cf18b9d9d6db
 
 com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
