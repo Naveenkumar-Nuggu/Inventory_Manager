@@ -27,6 +27,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +43,13 @@ import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+<<<<<<< HEAD
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+=======
+>>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
 
 public class AddItem extends AppCompatActivity {
     private String ORDER_TYPE="unknown";
@@ -55,18 +66,39 @@ public class AddItem extends AppCompatActivity {
     EditText supplierEm;
     EditText Threshold;
     DatabaseReference databaseReference;
+<<<<<<< HEAD
+
     StorageReference storagedata;
+
+=======
+    StorageReference storagedata;
+>>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
 
     private Bitmap yourSelectedImage;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
+<<<<<<< HEAD
         storagedata = FirebaseStorage.getInstance().getReference("images");
         databaseReference = FirebaseDatabase.getInstance().getReference("Database");
         Threshold = (EditText) findViewById(R.id.number2ET);
         supplierNA = (EditText) findViewById(R.id.editText6);
         supplierPh = (EditText) findViewById(R.id.editText13);
         supplierEm = (EditText) findViewById(R.id.editText14);
+=======
+<<<<<<< HEAD
+
+        storagedata=FirebaseStorage.getInstance().getReference("Database");
+
+=======
+        storagedata=FirebaseStorage.getInstance().getReference("Database");
+>>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
+        databaseReference =FirebaseDatabase.getInstance().getReference("Database");
+        Threshold= (EditText)findViewById(R.id.number2ET);
+supplierNA=(EditText)findViewById(R.id.editText6);
+supplierPh=(EditText)findViewById(R.id.editText13);
+supplierEm=(EditText)findViewById(R.id.editText14);
+>>>>>>> a5ae30c8cc4faf3f8114540e2449cf18b9d9d6db
         name = (EditText) findViewById(R.id.nameET);
         price = (EditText) findViewById(R.id.priceET);
         quantity = (EditText) findViewById(R.id.quantityET);
@@ -88,6 +120,7 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent ini = getIntent();
+<<<<<<< HEAD
                 if (actualUri != null) {
                     StorageReference storageReference = storagedata.child(System.currentTimeMillis() + "." + getFileextension(actualUri));
                     storageReference.putFile(actualUri)
@@ -137,6 +170,36 @@ public class AddItem extends AppCompatActivity {
 
                                 }
                             });
+=======
+if(actualUri !=null){
+    StorageReference storageReference=storagedata.child(System.currentTimeMillis()+"."+getFileextension(actualUri));
+storageReference.putFile(actualUri)
+        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                String Itemname=name.getText().toString();
+                String ItemPrice=price.getText().toString();
+                String ItemQuantity=quantity.getText().toString();
+                String IteamThreshold=Threshold.getText().toString();
+                String SupplierName=supplierNA.getText().toString();
+                String SupplierPhone=supplierPh.getText().toString();
+                String SupplierEmail=supplierEm.getText().toString();
+                if(!TextUtils.isEmpty(Itemname)&& !TextUtils.isEmpty(ItemPrice) && !TextUtils.isEmpty(ItemQuantity) && !TextUtils.isEmpty(IteamThreshold) && !TextUtils.isEmpty(SupplierName) && !TextUtils.isEmpty(SupplierEmail) && !TextUtils.isEmpty(SupplierPhone) ){
+                    String id=databaseReference.push().getKey();
+                    Database database=new Database(id,Itemname,ItemPrice,ItemQuantity,
+                            IteamThreshold,SupplierName,SupplierPhone,SupplierEmail,
+                            taskSnapshot.toString());
+                    String uploadID=databaseReference.push().getKey();
+
+                    databaseReference.child(id).setValue(database);
+                    name.setText("");
+                    price.setText("");
+                    quantity.setText("");
+                    Threshold.setText("");
+                    supplierNA.setText("");
+                    supplierPh.setText("");
+                    supplierEm.setText("");
+>>>>>>> a5ae30c8cc4faf3f8114540e2449cf18b9d9d6db
 
                 }
 
@@ -266,21 +329,31 @@ public class AddItem extends AppCompatActivity {
                 }
             }
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> a5ae30c8cc4faf3f8114540e2449cf18b9d9d6db
 
     }
 
-    public void tryToOpenImageSelector() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-            return;
-        }
-        openImageSelector();
+    public String getFileextension  (Uri uri){
+        ContentResolver contentResolver=getContentResolver();
+        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
+return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+
     }
+
+public void tryToOpenImageSelector() {
+    if (ContextCompat.checkSelfPermission(this,
+            Manifest.permission.READ_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        return;
+    }
+    openImageSelector();
+}
 
     private void openImageSelector() {
         Intent intent;
@@ -312,6 +385,7 @@ public class AddItem extends AppCompatActivity {
     }
 
     @Override
+<<<<<<< HEAD
     public void onActivityResult(int requestCode, int resultCode,
                                  Intent resultData) {
 
@@ -328,12 +402,76 @@ public class AddItem extends AppCompatActivity {
     }
 
 
+=======
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+
+<<<<<<< HEAD
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
+=======
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
+//            if (data != null && data.getData() != null) {
+//                actualUri = data.getData();
+////                DatabaseReference filepath = databaseReference.child(actualUri.getLastPathSegment());
+//try{
+//    Bitmap bm=MediaStore.Images.Media.getBitmap(getContentResolver(),actualUri);
+//    imageView.setImageBitmap(bm);
+//} catch (FileNotFoundException e) {
+//    e.printStackTrace();
+//} catch (IOException e) {
+//    e.printStackTrace();
+//}
+//            }
+//
+//        }
+//
+//    }
+>>>>>>> a5ae30c8cc4faf3f8114540e2449cf18b9d9d6db
     public String getFileextension  (Uri uri){
         ContentResolver contentResolver=getContentResolver();
         MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
 return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+>>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
 
+            if (resultData != null) {
+                actualUri = resultData.getData();
+                imageView.setImageURI(actualUri);
+                imageView.invalidate();
+            }
+        }
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+//
+
+//public void savebutuuon(){
+//    String Itemname=name.getText().toString();
+////    String ItemPrice=price.getText().toString();
+////    String ItemQuantity=quantity.getText().toString();
+////    String IteamThreshold=Threshold.getText().toString();
+////    String SupplierName=supplierNA.getText().toString();
+////    String SupplierPhone=supplierPh.getText().toString();
+////    String SupplierEmail=supplierEm.getText().toString();
+//    if(!TextUtils.isEmpty(Itemname)){
+//        String id=databaseReference.push().getKey();
+//        Database database=new Database(id,Itemname);
+//        databaseReference.child(id).setValue(database);
+//        name.setText("");
+//
+//    }
+//    else {
+//        Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
+//    }
+//}
+
+
+>>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
+
+>>>>>>> a5ae30c8cc4faf3f8114540e2449cf18b9d9d6db
 
 
 }
