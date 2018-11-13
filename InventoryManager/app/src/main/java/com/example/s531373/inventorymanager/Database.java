@@ -25,6 +25,18 @@ public class Database {
         SupplierPhone = supplierPhone;
         SupplierEmail = supplierEmail;
     }
+    public String getId() {
+        return Id;
+    }
+
+    public Database(String id, String itemname) {
+        this.Itemname = itemname;
+
+        this.Id=itemname;
+    }
+
+//    }
+
 
     public Database(String id, String itemname, String itemPrice, String itemQuantity, String iteamThreshold, String supplierName, String supplierPhone, String supplierEmail, String image) {
         Id = id;
