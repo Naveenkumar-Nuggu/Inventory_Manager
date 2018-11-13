@@ -27,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-<<<<<<< HEAD
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -40,10 +40,10 @@ import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-=======
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
->>>>>>> 10b2aed67fa4c93d48caf7c3ac6c857b268eda87
+
 
 public class AddItem extends AppCompatActivity {
     private String ORDER_TYPE="unknown";
@@ -60,19 +60,17 @@ public class AddItem extends AppCompatActivity {
     EditText supplierEm;
     EditText Threshold;
     DatabaseReference databaseReference;
-<<<<<<< HEAD
+
     StorageReference storagedata;
-=======
->>>>>>> 10b2aed67fa4c93d48caf7c3ac6c857b268eda87
+
 
     private Bitmap yourSelectedImage;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
-<<<<<<< HEAD
+
         storagedata=FirebaseStorage.getInstance().getReference("Database");
-=======
->>>>>>> 10b2aed67fa4c93d48caf7c3ac6c857b268eda87
+
         databaseReference =FirebaseDatabase.getInstance().getReference("Database");
         Threshold= (EditText)findViewById(R.id.number2ET);
 supplierNA=(EditText)findViewById(R.id.editText6);
@@ -116,9 +114,9 @@ storageReference.putFile(actualUri)
                     String id=databaseReference.push().getKey();
                     Database database=new Database(id,Itemname,ItemPrice,ItemQuantity,
                             IteamThreshold,SupplierName,SupplierPhone,SupplierEmail,
-                            taskSnapshot.getDownloadUrl().toString());
+                            taskSnapshot.toString());
                     String uploadID=databaseReference.push().getKey();
-//                    databaseReference.child(uploadID).setValue()
+
                     databaseReference.child(id).setValue(database);
                     name.setText("");
                     price.setText("");
@@ -287,38 +285,38 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
                }
             }
         });
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                savebutuuon();
-//            }
-//        });
 
     }
 
-    public void tryToOpenImageSelector() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-            return;
-        }
-        openImageSelector();
+    public String getFileextension  (Uri uri){
+        ContentResolver contentResolver=getContentResolver();
+        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
+return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+
     }
+
+public void tryToOpenImageSelector() {
+    if (ContextCompat.checkSelfPermission(this,
+            Manifest.permission.READ_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        return;
+    }
+    openImageSelector();
+}
 
     private void openImageSelector() {
-        Intent ini=new Intent();
-        ini.setType("image/*");
+        Intent intent;
         if (Build.VERSION.SDK_INT < 19) {
-            ini = new Intent(Intent.ACTION_GET_CONTENT);
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
         } else {
-            ini = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            ini.addCategory(Intent.CATEGORY_OPENABLE);
+            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
         }
-        //ini.setType("image/*");
-        startActivityForResult(Intent.createChooser(ini, "Select Picture"), PICK_IMAGE_REQUEST);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
     @Override
@@ -336,82 +334,18 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
         }
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-//
-//
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-//
-//            if (resultData != null) {
-//                actualUri = resultData.getData();
-//                imageView.setImageURI(actualUri);
-//                imageView.invalidate();
-//            }
-//        }
-//    }
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
-            actualUri = data.getData();
-            imageView.setImageURI(actualUri);
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
+
+            if (resultData != null) {
+                actualUri = resultData.getData();
+                imageView.setImageURI(actualUri);
+                imageView.invalidate();
+            }
         }
     }
-
-
-<<<<<<< HEAD
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-//            if (data != null && data.getData() != null) {
-//                actualUri = data.getData();
-////                DatabaseReference filepath = databaseReference.child(actualUri.getLastPathSegment());
-//try{
-//    Bitmap bm=MediaStore.Images.Media.getBitmap(getContentResolver(),actualUri);
-//    imageView.setImageBitmap(bm);
-//} catch (FileNotFoundException e) {
-//    e.printStackTrace();
-//} catch (IOException e) {
-//    e.printStackTrace();
-//}
-//            }
-//
-//        }
-//
-//    }
-    public String getFileextension  (Uri uri){
-        ContentResolver contentResolver=getContentResolver();
-        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
-return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-
-    }
-//
-
-=======
->>>>>>> 10b2aed67fa4c93d48caf7c3ac6c857b268eda87
-//public void savebutuuon(){
-//    String Itemname=name.getText().toString();
-////    String ItemPrice=price.getText().toString();
-////    String ItemQuantity=quantity.getText().toString();
-////    String IteamThreshold=Threshold.getText().toString();
-////    String SupplierName=supplierNA.getText().toString();
-////    String SupplierPhone=supplierPh.getText().toString();
-////    String SupplierEmail=supplierEm.getText().toString();
-//    if(!TextUtils.isEmpty(Itemname)){
-//        String id=databaseReference.push().getKey();
-//        Database database=new Database(id,Itemname);
-//        databaseReference.child(id).setValue(database);
-//        name.setText("");
-//
-//    }
-//    else {
-//        Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
-//    }
-//}
-
-
 
 
 
