@@ -66,5 +66,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.swapCursor(dbHelper.readStock());
+    }
+
+    public void clickOnViewItem(long id) {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra("itemId", id);
+        startActivity(intent);
+    }
+
+    public void clickOnSale(long id, int quantity) {
+        dbHelper.sellOneItem(id, quantity);
+        adapter.swapCursor(dbHelper.readStock());
+    }
 
 }
