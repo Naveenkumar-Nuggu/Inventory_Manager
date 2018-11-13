@@ -28,7 +28,11 @@ public class Database {
 //    public String getId() {
 //        return Id;
 //    }
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> 479134ac1dd95ee7009a0045ed3fb22dc203162c
 //    public Database(String id, String itemname) {
 //        this.Itemname = itemname;
 //
