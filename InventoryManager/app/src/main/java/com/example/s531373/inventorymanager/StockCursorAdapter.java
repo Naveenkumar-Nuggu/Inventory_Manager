@@ -1,5 +1,3 @@
-﻿
-
 package com.example.s531373.inventorymanager;
 
 import android.content.Context;
@@ -12,9 +10,7 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.s531373.inventorymanager.MainActivity;
-
-import eu.laramartin.inventorymanager.data.StockContract;
+import com.example.s531373.inventorymanager.data.StockContract;
 
 
 public class StockCursorAdapter extends CursorAdapter {
