@@ -20,10 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditItem" />
-        <activity android:name=".ViewActivity" />
-        <activity android:name=".StatusActivity"></activity>
-        <activity android:name=".AddItem"></activity>
     </application>
 
 </manifest>
