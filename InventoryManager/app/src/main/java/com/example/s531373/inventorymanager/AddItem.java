@@ -61,12 +61,12 @@ public class AddItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
-        storagedata=FirebaseStorage.getInstance().getReference("Database");
-        databaseReference =FirebaseDatabase.getInstance().getReference("Database");
-        Threshold= (EditText)findViewById(R.id.number2ET);
-supplierNA=(EditText)findViewById(R.id.editText6);
-supplierPh=(EditText)findViewById(R.id.editText13);
-supplierEm=(EditText)findViewById(R.id.editText14);
+        storagedata = FirebaseStorage.getInstance().getReference("images");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Database");
+        Threshold = (EditText) findViewById(R.id.number2ET);
+        supplierNA = (EditText) findViewById(R.id.editText6);
+        supplierPh = (EditText) findViewById(R.id.editText13);
+        supplierEm = (EditText) findViewById(R.id.editText14);
         name = (EditText) findViewById(R.id.nameET);
         price = (EditText) findViewById(R.id.priceET);
         quantity = (EditText) findViewById(R.id.quantityET);
@@ -88,26 +88,75 @@ supplierEm=(EditText)findViewById(R.id.editText14);
             @Override
             public void onClick(View v) {
                 Intent ini = getIntent();
-if(actualUri !=null){
-    StorageReference storageReference=storagedata.child(System.currentTimeMillis()+"."+getFileextension(actualUri));
-storageReference.putFile(actualUri)
-        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                String Itemname=name.getText().toString();
-                String ItemPrice=price.getText().toString();
-                String ItemQuantity=quantity.getText().toString();
-                String IteamThreshold=Threshold.getText().toString();
-                String SupplierName=supplierNA.getText().toString();
-                String SupplierPhone=supplierPh.getText().toString();
-                String SupplierEmail=supplierEm.getText().toString();
-                if(!TextUtils.isEmpty(Itemname)&& !TextUtils.isEmpty(ItemPrice) && !TextUtils.isEmpty(ItemQuantity) && !TextUtils.isEmpty(IteamThreshold) && !TextUtils.isEmpty(SupplierName) && !TextUtils.isEmpty(SupplierEmail) && !TextUtils.isEmpty(SupplierPhone) ){
-                    String id=databaseReference.push().getKey();
-                    Database database=new Database(id,Itemname,ItemPrice,ItemQuantity,
-                            IteamThreshold,SupplierName,SupplierPhone,SupplierEmail,
-                            taskSnapshot.getDownloadUrl().toString());
-                    String uploadID=databaseReference.push().getKey();
+                if (actualUri != null) {
+                    StorageReference storageReference = storagedata.child(System.currentTimeMillis() + "." + getFileextension(actualUri));
+                    storageReference.putFile(actualUri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    String Itemname = name.getText().toString();
+                                    String ItemPrice = price.getText().toString();
+                                    String ItemQuantity = quantity.getText().toString();
+                                    String IteamThreshold = Threshold.getText().toString();
+                                    String SupplierName = supplierNA.getText().toString();
+                                    String SupplierPhone = supplierPh.getText().toString();
+                                    String SupplierEmail = supplierEm.getText().toString();
+                                    if (!TextUtils.isEmpty(Itemname) && !TextUtils.isEmpty(ItemPrice) && !TextUtils.isEmpty(ItemQuantity) && !TextUtils.isEmpty(IteamThreshold) && !TextUtils.isEmpty(SupplierName) && !TextUtils.isEmpty(SupplierEmail) && !TextUtils.isEmpty(SupplierPhone)) {
+                                        String id = databaseReference.push().getKey();
+                                        Database database = new Database(id, Itemname, ItemPrice, ItemQuantity,
+                                                IteamThreshold, SupplierName, SupplierPhone, SupplierEmail,
+                                                taskSnapshot.toString());
+                                        String uploadID = databaseReference.push().getKey();
 //                    databaseReference.child(uploadID).setValue()
+                                        databaseReference.child(id).setValue(database);
+                                        name.setText("");
+                                        price.setText("");
+                                        quantity.setText("");
+                                        Threshold.setText("");
+                                        supplierNA.setText("");
+                                        supplierPh.setText("");
+                                        supplierEm.setText("");
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
+                                    }
+                                    finish();
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            })
+                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                    double process = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+
+                                }
+                            });
+
+                }
+
+                ini.putExtra("name", name.getText().toString());
+                ini.putExtra("price", price.getText().toString());
+                ini.putExtra("quantity", quantity.getText().toString());
+                ini.putExtra("image", BitmapFactory.decodeResource(getResources(), R.id.imageView));
+
+
+                setResult(Activity.RESULT_OK, ini);
+                String Itemname = name.getText().toString();
+                String ItemPrice = price.getText().toString();
+                String ItemQuantity = quantity.getText().toString();
+                String IteamThreshold = Threshold.getText().toString();
+                String SupplierName = supplierNA.getText().toString();
+                String SupplierPhone = supplierPh.getText().toString();
+                String SupplierEmail = supplierEm.getText().toString();
+                if (!TextUtils.isEmpty(Itemname) && !TextUtils.isEmpty(ItemPrice) && !TextUtils.isEmpty(ItemQuantity) && !TextUtils.isEmpty(IteamThreshold) && !TextUtils.isEmpty(SupplierName) && !TextUtils.isEmpty(SupplierEmail) && !TextUtils.isEmpty(SupplierPhone)) {
+                    String id = databaseReference.push().getKey();
+                    Database database = new Database(id, Itemname, ItemPrice, ItemQuantity, IteamThreshold, SupplierName, SupplierPhone, SupplierEmail);
                     databaseReference.child(id).setValue(database);
                     name.setText("");
                     price.setText("");
@@ -117,65 +166,12 @@ storageReference.putFile(actualUri)
                     supplierPh.setText("");
                     supplierEm.setText("");
 
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
-                }
-                finish();
-
-            }
-        })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        })
-        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
-
-            }
-        });
-
-}
-
-                ini.putExtra("name",name.getText().toString());
-                ini.putExtra("price",price.getText().toString());
-                ini.putExtra("quantity",quantity.getText().toString());
-                ini.putExtra("image", BitmapFactory.decodeResource(getResources(),R.id.imageView));
-
-
-                setResult(Activity.RESULT_OK,ini);
-                String Itemname=name.getText().toString();
-    String ItemPrice=price.getText().toString();
-    String ItemQuantity=quantity.getText().toString();
-    String IteamThreshold=Threshold.getText().toString();
-    String SupplierName=supplierNA.getText().toString();
-    String SupplierPhone=supplierPh.getText().toString();
-    String SupplierEmail=supplierEm.getText().toString();
-                if(!TextUtils.isEmpty(Itemname)&& !TextUtils.isEmpty(ItemPrice) && !TextUtils.isEmpty(ItemQuantity) && !TextUtils.isEmpty(IteamThreshold) && !TextUtils.isEmpty(SupplierName) && !TextUtils.isEmpty(SupplierEmail) && !TextUtils.isEmpty(SupplierPhone) ){
-                    String id=databaseReference.push().getKey();
-                    Database database=new Database(id,Itemname,ItemPrice,ItemQuantity,IteamThreshold,SupplierName,SupplierPhone,SupplierEmail);
-                    databaseReference.child(id).setValue(database);
-                    name.setText("");
-                    price.setText("");
-                    quantity.setText("");
-                    Threshold.setText("");
-                    supplierNA.setText("");
-                    supplierPh.setText("");
-                    supplierEm.setText("");
-
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
                 }
                 finish();
             }
         });
-
-
 
 
         Button plus1 = (Button) findViewById(R.id.plus1BTN);
@@ -186,7 +182,7 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
                 String str = firstin.getText().toString();
                 int i = Integer.parseInt(str);
                 i++;
-                firstin.setText(""+i);
+                firstin.setText("" + i);
             }
         });
 
@@ -198,10 +194,9 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
                 String str = firstin.getText().toString();
                 int i = Integer.parseInt(str);
                 i--;
-                if(i<0){
-                    firstin.setText(""+0);
-                }
-                else {
+                if (i < 0) {
+                    firstin.setText("" + 0);
+                } else {
                     firstin.setText("" + i);
                 }
             }
@@ -216,7 +211,7 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
                 String str = seconin.getText().toString();
                 int i = Integer.parseInt(str);
                 i++;
-                seconin.setText(""+i);
+                seconin.setText("" + i);
             }
         });
 
@@ -228,10 +223,9 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
                 String str = seconin.getText().toString();
                 int i = Integer.parseInt(str);
                 i--;
-                if(i<0){
-                    seconin.setText(""+0);
-                }
-                else {
+                if (i < 0) {
+                    seconin.setText("" + 0);
+                } else {
                     seconin.setText("" + i);
                 }
             }
@@ -244,19 +238,16 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
             public void onClick(View v) {
                 RadioButton rd1 = (RadioButton) findViewById(R.id.autoRD);
                 RadioButton rd2 = (RadioButton) findViewById(R.id.manRD);
-                if(rd2.isChecked()) {
+                if (rd2.isChecked()) {
                     rd2.setChecked(false);
                     rd1.setChecked(true);
-                    ORDER_TYPE="Auto";
-                }
-                else{
+                    ORDER_TYPE = "Auto";
+                } else {
                     rd1.setChecked(true);
-                    ORDER_TYPE="Auto";
+                    ORDER_TYPE = "Auto";
                 }
             }
         });
-
-
 
 
         rd2.setOnClickListener(new View.OnClickListener() {
@@ -265,23 +256,17 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
                 RadioButton rd1 = (RadioButton) findViewById(R.id.autoRD);
                 RadioButton rd2 = (RadioButton) findViewById(R.id.manRD);
 
-               if(rd1.isChecked()){
-                   rd1.setChecked(false);
-                   rd2.setChecked(true);
-                   ORDER_TYPE="Manual";
-               }
-               else{
-                   rd2.setChecked(true);
-                   ORDER_TYPE="Manual";
-               }
+                if (rd1.isChecked()) {
+                    rd1.setChecked(false);
+                    rd2.setChecked(true);
+                    ORDER_TYPE = "Manual";
+                } else {
+                    rd2.setChecked(true);
+                    ORDER_TYPE = "Manual";
+                }
             }
         });
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                savebutuuon();
-//            }
-//        });
+
 
     }
 
@@ -298,107 +283,57 @@ double process=(100.0* taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalB
     }
 
     private void openImageSelector() {
-        Intent ini=new Intent();
-        ini.setType("image/*");
+        Intent intent;
         if (Build.VERSION.SDK_INT < 19) {
-            ini = new Intent(Intent.ACTION_GET_CONTENT);
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
         } else {
-            ini = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            ini.addCategory(Intent.CATEGORY_OPENABLE);
+            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
         }
-        //ini.setType("image/*");
-        startActivityForResult(Intent.createChooser(ini, "Select Picture"), PICK_IMAGE_REQUEST);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String permissions[], int[]
+                                                   grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
-
+                // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        && grantResults[0] ==
+                        PackageManager.PERMISSION_GRANTED) {
                     openImageSelector();
-
+                    // permission was granted
                 }
             }
         }
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-//
-//
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-//
-//            if (resultData != null) {
-//                actualUri = resultData.getData();
-//                imageView.setImageURI(actualUri);
-//                imageView.invalidate();
-//            }
-//        }
-//    }
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
-            actualUri = data.getData();
-            imageView.setImageURI(actualUri);
+    public void onActivityResult(int requestCode, int resultCode,
+                                 Intent resultData) {
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode ==
+                Activity.RESULT_OK) {
+
+
+            if (resultData != null) {
+                actualUri = resultData.getData();
+                imageView.setImageURI(actualUri);
+                imageView.invalidate();
+            }
         }
     }
 
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-//            if (data != null && data.getData() != null) {
-//                actualUri = data.getData();
-////                DatabaseReference filepath = databaseReference.child(actualUri.getLastPathSegment());
-//try{
-//    Bitmap bm=MediaStore.Images.Media.getBitmap(getContentResolver(),actualUri);
-//    imageView.setImageBitmap(bm);
-//} catch (FileNotFoundException e) {
-//    e.printStackTrace();
-//} catch (IOException e) {
-//    e.printStackTrace();
-//}
-//            }
-//
-//        }
-//
-//    }
     public String getFileextension  (Uri uri){
         ContentResolver contentResolver=getContentResolver();
         MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
 return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
 
     }
-//
-
-//public void savebutuuon(){
-//    String Itemname=name.getText().toString();
-////    String ItemPrice=price.getText().toString();
-////    String ItemQuantity=quantity.getText().toString();
-////    String IteamThreshold=Threshold.getText().toString();
-////    String SupplierName=supplierNA.getText().toString();
-////    String SupplierPhone=supplierPh.getText().toString();
-////    String SupplierEmail=supplierEm.getText().toString();
-//    if(!TextUtils.isEmpty(Itemname)){
-//        String id=databaseReference.push().getKey();
-//        Database database=new Database(id,Itemname);
-//        databaseReference.child(id).setValue(database);
-//        name.setText("");
-//
-//    }
-//    else {
-//        Toast.makeText(getApplicationContext(), "empty", Toast.LENGTH_SHORT).show();
-//    }
-//}
-
-
-
 
 
 }
