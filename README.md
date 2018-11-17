@@ -9,7 +9,9 @@
 
 ## App Information
 
-- APK Version - 24
+- APK Version
+  - Min Version - 15
+  - Compiled Version  - 24
 - Supported Devices - Google Nexus 7
 
 ## Sequence Information for using the app.
