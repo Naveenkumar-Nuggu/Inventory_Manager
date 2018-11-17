@@ -24,4 +24,7 @@ dependencies {
     //testCompile 'junit:junit:4.12'
     implementation 'com.android.support:appcompat-v7:24.1.0'
     implementation 'com.android.support:design:24.2.0'
+    testImplementation 'junit:junit:4.12'
+    //androidTestImplementation 'org.junit.jupiter:junit-jupiter-api'
+    androidTestImplementation 'org.testng:testng:6.9.6'
 }

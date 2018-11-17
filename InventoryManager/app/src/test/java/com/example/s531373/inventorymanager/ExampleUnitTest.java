@@ -2,6 +2,7 @@ package com.example.s531373.inventorymanager;
 
 import org.junit.Test;
 
+import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 /**
