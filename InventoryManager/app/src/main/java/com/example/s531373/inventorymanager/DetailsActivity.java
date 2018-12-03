@@ -118,11 +118,10 @@ public class DetailsActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        // User clicked "Discard" button, close the current activity.
                         finish();
                     }
                 };
-        // Show dialog that there are unsaved changes
+
         showUnsavedChangesDialog(discardButtonClickListener);
     }
 
@@ -192,7 +191,6 @@ public class DetailsActivity extends AppCompatActivity {
             case R.id.action_save:
                 // save item in DB
                 if (!addItemToDb()) {
-                    // saying to onOptionsItemSelected that user clicked button
                     return true;
                 }
                 finish();
@@ -206,11 +204,9 @@ public class DetailsActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                // User clicked "Discard" button, navigate to parent activity.
                                 NavUtils.navigateUpFromSameTask(DetailsActivity.this);
                             }
                         };
-                // Show a dialog that notifies the user they have unsaved changes
                 showUnsavedChangesDialog(discardButtonClickListener);
                 return true;
             case R.id.action_order:
@@ -223,7 +219,7 @@ public class DetailsActivity extends AppCompatActivity {
                 return true;
             case R.id.action_delete_all_data:
                 //delete all data
-                showDeleteConfirmationDialog(0);
+                showDeleteallConfirmationDialog(0);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -348,6 +344,30 @@ public class DetailsActivity extends AppCompatActivity {
     private void showDeleteConfirmationDialog(final long itemId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_message);
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (itemId == 0) {
+                    deleteAllRowsFromTable();
+                } else {
+                    deleteOneItemFromTable(itemId);
+                }
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void showDeleteallConfirmationDialog(final long itemId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_all_message);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 if (itemId == 0) {

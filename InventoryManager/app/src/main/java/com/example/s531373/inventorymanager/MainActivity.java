@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     private void addDummyData() {
         StockItem dove = new StockItem(
                 "dove",
-                "10 $",
+                "10",
                 45,
                 "Pavan K",
                 "+1 660 504 0876",
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         StockItem notebooks = new StockItem(
                 "Notebooks",
-                "20 $",
+                "20",
                 24,
                 "Yash raj",
                 "+1 650 804 9876",
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         StockItem tide = new StockItem(
                 "tide",
-                "11 $",
+                "11",
                 74,
                 "Pratik N",
                 "+1 234 094 7632",
@@ -135,84 +135,6 @@ public class MainActivity extends AppCompatActivity {
                 "android.resource://com.example.s531373.inventorymanager/drawable/tide");
         dbHelper.insertItem(tide);
 
-//        StockItem cola = new StockItem(
-//                "Cola",
-//                "13 $",
-//                44,
-//                "Midhun Reddy",
-//                "+1 234 094 7978",
-//                "mreddy@sweet.com",
-//
-//                "android.resource://com.example.s531373.inventorymanager/drawable/cola");
-//        dbHelper.insertItem(cola);
-//
-//        StockItem fruitSalad = new StockItem(
-//                "Fruit salad",
-//                "6 $",
-//                34,
-//                "Sai Reddy",
-//                "+1 324 904 7978",
-//                "reddys@sweet.com",
-//
-//                "android.resource://com.example.s531373.inventorymanager/drawable/fruit_salad");
-//        dbHelper.insertItem(fruitSalad);
-//
-//        StockItem smurfs = new StockItem(
-//                "Smurfs",
-//                "12 $",
-//                26,
-//                "Sachin Shetty",
-//                "+1 524 904 7978",
-//                "sshetty@sweet.com",
-//
-//                "android.resource://com.example.s531373.inventorymanager/drawable/smurfs");
-//        dbHelper.insertItem(smurfs);
-//
-//        StockItem fresquito = new StockItem(
-//                "Fresquito",
-//                "9 $",
-//                54,
-//                "Krishna Kumar",
-//                "+1 543 660 6789",
-//                "kkumar@dulce.com",
-//
-//                "android.resource://com.example.s531373.inventorymanager/drawable/fresquito");
-//        dbHelper.insertItem(fresquito);
-//
-//        StockItem hotChillies = new StockItem(
-//                "Hot chillies",
-//                "13 $",
-//                12,
-//                "Robert James",
-//                "+1 456 660 7845",
-//                "rjames@dulce.com",
-//
-//                "android.resource://com.example.s531373.inventorymanager/drawable/hot_chillies");
-//        dbHelper.insertItem(hotChillies);
-//
-//        StockItem lolipopStrawberry = new StockItem(
-//                "Lolipop strawberry",
-//                "12 $",
-//                62,
-//                "Charles Harry",
-//                "+1 345 234 5678",
-//                "charry@dulce.com",
-//
-//                "android.resource://com.example.s531373.inventorymanager/drawable/lolipop");
-//        dbHelper.insertItem(lolipopStrawberry);
-//
-//        StockItem heartGummy = new StockItem(
-//                "Heart gummy jellies",
-//                "13 $",
-//                22,
-//                "Terry Matt",
-//                "+1 567 743 2367",
-//                "mterry@dulce.com",
-//
-//                "android.resource://com.example.s531373.inventorymanager/drawable/heart_gummy");
-//        dbHelper.insertItem(heartGummy);
-//    }
-//}
     }
 }
 

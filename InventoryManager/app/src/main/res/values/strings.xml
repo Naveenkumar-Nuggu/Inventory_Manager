@@ -23,7 +23,8 @@
     <string name="phone">Phone</string>
     <string name="email">E-mail</string>
     <string name="order_message">You can place an order for this item by phone or e-mail</string>
-    <string name="delete_message">Are you sure you want to procede with the deletion?</string>
+    <string name="delete_message">Are you sure you want to delete this item?</string>
+    <string name="delete_all_message">Are you sure you want to delete all items in inventory?</string>
     <string name="delete">Accept</string>
     <string name="cancel">Cancel</string>
     <string name="empty_list_hint">Start adding some items to your inventory</string>

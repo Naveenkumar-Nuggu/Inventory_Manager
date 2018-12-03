@@ -12,7 +12,7 @@
 - APK Version
   - Min Version - 15
   - Compiled Version  - 24
-- Supported Devices - Google Nexus 7
+- Supported Devices - Pixel 2 XL (Android 7.0, API 24)
 
 ## Sequence Information for using the app.
 
