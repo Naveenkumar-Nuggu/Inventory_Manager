@@ -265,7 +265,13 @@ public class DetailsActivity extends AppCompatActivity {
             dbHelper.insertItem(item);
         } else {
             int quantity = Integer.parseInt(quantityEdit.getText().toString().trim());
-            dbHelper.updateItem(currentItemId, quantity);
+            String name = nameEdit.getText().toString().trim();
+            String price= priceEdit.getText().toString().trim();
+            String suppliername = supplierNameEdit.getText().toString().trim();
+            String supplierphone = supplierPhoneEdit.getText().toString().trim();
+            String supplieremail = supplierEmailEdit.getText().toString().trim();
+            //String image =     actualUri.toString();
+            dbHelper.updateItem(currentItemId, quantity, name, price, suppliername,supplierphone,supplieremail);
         }
         return true;
     }
@@ -290,11 +296,11 @@ public class DetailsActivity extends AppCompatActivity {
         supplierPhoneEdit.setText(cursor.getString(cursor.getColumnIndex(StockContract.StockEntry.COLUMN_SUPPLIER_PHONE)));
         supplierEmailEdit.setText(cursor.getString(cursor.getColumnIndex(StockContract.StockEntry.COLUMN_SUPPLIER_EMAIL)));
         imageView.setImageURI(Uri.parse(cursor.getString(cursor.getColumnIndex(StockContract.StockEntry.COLUMN_IMAGE))));
-        nameEdit.setEnabled(false);
-        priceEdit.setEnabled(false);
-        supplierNameEdit.setEnabled(false);
-        supplierPhoneEdit.setEnabled(false);
-        supplierEmailEdit.setEnabled(false);
+        //nameEdit.setEnabled(false);
+        //priceEdit.setEnabled(false);
+        //supplierNameEdit.setEnabled(false);
+        //supplierPhoneEdit.setEnabled(false);
+        //supplierEmailEdit.setEnabled(false);
         imageBtn.setEnabled(false);
     }
 
